@@ -9,13 +9,44 @@ from datetime import datetime
 app = Flask(__name__)
 
 # ===== НАСТРОЙКИ (ЗАМЕНИТЕ) =====
-GITHUB_RAW_URL = "https://raw.githubusercontent.com/yourusername/jarvis-keys/main/keys.json"
-GITHUB_TOKEN = "your_github_token"
-GITHUB_REPO = "yourusername/jarvis-keys"
+GITHUB_RAW_URL = "https://raw.githubusercontent.com/MagGomedMY/jarvis-keys/main/keys.json"
+GITHUB_TOKEN = "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"
+GITHUB_REPO = "MagGomedMY/jarvis-keys"
 GITHUB_KEYS_PATH = "keys.json"
 
 # Секретный ключ для подписи ответов
-SECRET_KEY = "your_secret_key_change_this"
+SECRET_KEY = "JarvisActivationSecretKey_2026_8f7d3a1b9c4e2f5a8d7b3c1e9f4a2d5b"
+
+@app.route('/', methods=['GET'])
+def home():
+    """Главная страница для проверки работы сервера"""
+    return jsonify({
+        "status": "online",
+        "service": "Jarvis Activation Server",
+        "version": "1.0.0",
+        "endpoints": {
+            "GET /": "Эта информация",
+            "GET /check": "Проверка статуса (для совместимости)",
+            "POST /check": "Проверка ключа",
+            "POST /activate": "Активация ключа"
+        }
+    })
+
+@app.route('/check', methods=['GET'])
+def check_get():
+    """GET версия для проверки в браузере"""
+    return jsonify({
+        "status": "check_endpoint",
+        "message": "Используйте POST запрос для проверки ключа",
+        "example": {
+            "method": "POST",
+            "url": "/check",
+            "body": {
+                "key": "JARVIS-XXXX-XXXX-XXXX",
+                "hwid": "ваш_hwid"
+            }
+        }
+    })
 
 def get_hwid_hash(hwid):
     """Хеширование HWID для безопасности"""
@@ -202,4 +233,5 @@ def check():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
+
     app.run(host='0.0.0.0', port=port)
