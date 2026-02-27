@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # ===== НАСТРОЙКИ (ЗАМЕНИТЕ) =====
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/MagGomedMY/jarvis-keys/main/keys.json"
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "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"
 GITHUB_REPO = "MagGomedMY/jarvis-keys"
 GITHUB_KEYS_PATH = "keys.json"
 
@@ -235,3 +235,4 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
 
     app.run(host='0.0.0.0', port=port)
+
